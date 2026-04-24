@@ -1,0 +1,1491 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seminararbeit Roadmap — Zalando & Digitale Transformation</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #00A699;
+    --teal-dark: #007a70;
+    --teal-light: #e6f7f6;
+    --teal-mid: #b3e8e4;
+    --ink: #1a1a2e;
+    --ink-light: #4a4a6a;
+    --cream: #faf9f7;
+    --white: #ffffff;
+    --border: #e0ddd8;
+    --warn: #e8734a;
+    --success: #2ecc71;
+    --gold: #c9a84c;
+    --shadow: 0 4px 24px rgba(0,166,153,0.08);
+    --shadow-hover: 0 8px 40px rgba(0,166,153,0.16);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--ink);
+    color: var(--white);
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  }
+
+  .header-inner {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .fom-badge {
+    background: var(--teal);
+    color: white;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 4px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .header-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    color: var(--white);
+  }
+
+  .header-title span { color: var(--teal); font-style: italic; }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .deadline-badge {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: var(--white);
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .deadline-badge span { color: var(--warn); font-weight: 600; }
+
+  .btn {
+    cursor: pointer;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .btn-teal { background: var(--teal); color: white; }
+  .btn-teal:hover { background: var(--teal-dark); transform: translateY(-1px); }
+
+  .btn-outline {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.25);
+    color: var(--white);
+  }
+  .btn-outline:hover { background: rgba(255,255,255,0.1); }
+
+  /* ── PROGRESS BAR ── */
+  .progress-strip {
+    background: rgba(255,255,255,0.05);
+    padding: 12px 40px;
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .progress-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
+    white-space: nowrap;
+  }
+
+  .progress-bar-wrap {
+    flex: 1;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    height: 6px;
+    overflow: hidden;
+  }
+
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--teal), #00d4c4);
+    border-radius: 10px;
+    transition: width 0.6s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  .progress-pct {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: var(--teal);
+    font-weight: 500;
+    min-width: 40px;
+    text-align: right;
+  }
+
+  /* ── MAIN LAYOUT ── */
+  .container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 40px 40px 80px;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    position: sticky;
+    top: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .sidebar-card {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+  }
+
+  .sidebar-card h3 {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 16px;
+  }
+
+  .chapter-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s;
+    margin-bottom: 2px;
+  }
+
+  .chapter-nav-item:hover { background: var(--teal-light); }
+  .chapter-nav-item.active { background: var(--teal); color: white; }
+  .chapter-nav-item.active .nav-num { background: rgba(255,255,255,0.2); color: white; }
+
+  .nav-num {
+    background: var(--teal-light);
+    color: var(--teal-dark);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .nav-text {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.3;
+  }
+
+  .nav-progress {
+    margin-left: auto;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--teal);
+    font-weight: 500;
+  }
+
+  .chapter-nav-item.active .nav-progress { color: rgba(255,255,255,0.8); }
+
+  /* Stats */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .stat-item {
+    background: var(--cream);
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--teal);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: var(--ink-light);
+    margin-top: 4px;
+    line-height: 1.3;
+  }
+
+  /* Timeline */
+  .timeline-item {
+    display: flex;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .timeline-item:last-child { border-bottom: none; }
+
+  .timeline-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--teal);
+    margin-top: 5px;
+    flex-shrink: 0;
+    border: 2px solid var(--white);
+    box-shadow: 0 0 0 2px var(--teal-mid);
+  }
+
+  .timeline-dot.done { background: var(--success); box-shadow: 0 0 0 2px #a8f0c6; }
+  .timeline-dot.urgent { background: var(--warn); box-shadow: 0 0 0 2px #f7c4b0; }
+
+  .timeline-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--teal);
+    font-weight: 500;
+  }
+
+  .timeline-desc {
+    font-size: 12px;
+    color: var(--ink-light);
+    line-height: 1.4;
+  }
+
+  /* Storage Info */
+  .storage-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+
+  .storage-status.local { background: #fff8e6; color: #8a6000; border: 1px solid #fde8a0; }
+  .storage-status.cloud { background: #e6f7f6; color: var(--teal-dark); border: 1px solid var(--teal-mid); }
+
+  .dot-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+    flex-shrink: 0;
+  }
+
+  /* ── MAIN CONTENT ── */
+  .main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 4px;
+  }
+
+  .section-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--teal-mid);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .section-title-block h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+
+  .section-title-block .section-meta {
+    font-size: 12px;
+    color: var(--ink-light);
+    margin-top: 2px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* Chapter Card */
+  .chapter-card {
+    background: var(--white);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .chapter-card:hover { box-shadow: var(--shadow-hover); }
+
+  .chapter-card-header {
+    padding: 22px 28px 18px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .chapter-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: var(--teal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .chapter-header-text { flex: 1; }
+
+  .chapter-header-text h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+
+  .chapter-header-text .chapter-subtitle {
+    font-size: 12px;
+    color: var(--ink-light);
+    margin-top: 2px;
+  }
+
+  .chapter-card-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+  }
+
+  .chapter-progress-ring {
+    position: relative;
+    width: 44px;
+    height: 44px;
+  }
+
+  .chapter-progress-ring svg { transform: rotate(-90deg); }
+  .ring-bg { fill: none; stroke: var(--teal-light); stroke-width: 3; }
+  .ring-fill { fill: none; stroke: var(--teal); stroke-width: 3; stroke-linecap: round; transition: stroke-dashoffset 0.6s ease; }
+
+  .ring-text {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--teal-dark);
+  }
+
+  .collapse-icon {
+    color: var(--ink-light);
+    font-size: 18px;
+    transition: transform 0.3s ease;
+    margin-left: 8px;
+  }
+
+  .chapter-card.collapsed .collapse-icon { transform: rotate(-90deg); }
+
+  .chapter-card-body {
+    padding: 0 28px 20px;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  .chapter-card.collapsed .chapter-card-body { max-height: 0 !important; padding-bottom: 0; }
+
+  /* Task Groups */
+  .task-group {
+    margin-top: 18px;
+  }
+
+  .task-group-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px dashed var(--teal-mid);
+  }
+
+  /* Task Item */
+  .task-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    margin-bottom: 4px;
+    border: 1px solid transparent;
+  }
+
+  .task-item:hover { background: var(--cream); border-color: var(--border); }
+  .task-item.done { background: #f0fdf8; border-color: #a8f0c6; }
+  .task-item.done:hover { background: #e6faf0; }
+
+  .task-checkbox {
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+    border: 2px solid var(--border);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    margin-top: 1px;
+    background: var(--white);
+  }
+
+  .task-item.done .task-checkbox {
+    background: var(--success);
+    border-color: var(--success);
+  }
+
+  .checkmark {
+    display: none;
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .task-item.done .checkmark { display: block; }
+
+  .task-content { flex: 1; }
+
+  .task-text {
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.5;
+    transition: all 0.2s ease;
+  }
+
+  .task-item.done .task-text {
+    color: var(--ink-light);
+    text-decoration: line-through;
+    text-decoration-color: var(--teal-mid);
+  }
+
+  .task-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 5px;
+  }
+
+  .task-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-weight: 500;
+  }
+
+  .tag-science { background: #ede9ff; color: #6b21a8; }
+  .tag-internet { background: #fff0e6; color: #c05600; }
+  .tag-primary { background: #e6f7f6; color: var(--teal-dark); }
+  .tag-deadline { background: #fef2f2; color: #b91c1c; }
+  .tag-tip { background: #fefce8; color: #854d0e; }
+
+  /* Phases Section */
+  .phases-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+  }
+
+  .phase-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 16px 14px;
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--teal);
+    box-shadow: var(--shadow);
+  }
+
+  .phase-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--teal);
+    letter-spacing: 1px;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+
+  .phase-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+
+  .phase-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-light);
+  }
+
+  /* Rules Card */
+  .rules-card {
+    background: linear-gradient(135deg, var(--ink) 0%, #2d2d4e 100%);
+    color: var(--white);
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: var(--shadow-hover);
+  }
+
+  .rules-card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .rules-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .rule-item {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+
+  .rule-item.forbidden {
+    background: rgba(232,115,74,0.1);
+    border-color: rgba(232,115,74,0.25);
+  }
+
+  .rule-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 8px;
+  }
+
+  .rule-item.forbidden .rule-label { color: var(--warn); }
+
+  .rule-text {
+    font-size: 13px;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.5;
+  }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 36px;
+    max-width: 520px;
+    width: 90%;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.3);
+    animation: modalIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  }
+
+  @keyframes modalIn {
+    from { opacity: 0; transform: scale(0.9) translateY(20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  .modal h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+
+  .modal p {
+    color: var(--ink-light);
+    font-size: 13px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .modal label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 6px;
+    margin-top: 14px;
+  }
+
+  .modal input {
+    width: 100%;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .modal input:focus { border-color: var(--teal); }
+
+  .modal-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 24px;
+    justify-content: flex-end;
+  }
+
+  .btn-ghost {
+    background: transparent;
+    border: 1.5px solid var(--border);
+    color: var(--ink-light);
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: all 0.2s;
+  }
+
+  .btn-ghost:hover { border-color: var(--ink); color: var(--ink); }
+
+  .info-box {
+    background: var(--teal-light);
+    border: 1px solid var(--teal-mid);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 12px;
+    color: var(--teal-dark);
+    line-height: 1.5;
+    margin-top: 16px;
+  }
+
+  .info-box a { color: var(--teal-dark); font-weight: 600; }
+
+  /* Toast */
+  .toast {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    background: var(--ink);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 500;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+    z-index: 2000;
+    transform: translateY(80px);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .toast.show { transform: translateY(0); opacity: 1; }
+  .toast.success .toast-icon { color: var(--success); }
+  .toast.error .toast-icon { color: var(--warn); }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .container { grid-template-columns: 1fr; padding: 24px 20px; }
+    .sidebar { position: static; }
+    .phases-grid { grid-template-columns: 1fr 1fr; }
+    .rules-grid { grid-template-columns: 1fr; }
+    .header-inner { padding: 14px 20px; }
+    .progress-strip { padding: 10px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="header-brand">
+      <span class="fom-badge">FOM SS26</span>
+      <h1 class="header-title">Seminararbeit: <span>Digitale Transformation Zalando</span></h1>
+    </div>
+    <div class="header-actions">
+      <div class="deadline-badge">Abgabe: <span>02.08.2026</span></div>
+      <button class="btn btn-outline" onclick="openSyncModal()">☁ Sync-Einstellungen</button>
+      <button class="btn btn-teal" onclick="resetAll()">↺ Reset</button>
+    </div>
+  </div>
+  <div class="progress-strip">
+    <span class="progress-label">GESAMTFORTSCHRITT</span>
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-fill" id="globalBarFill" style="width:0%"></div>
+    </div>
+    <span class="progress-pct" id="globalPct">0%</span>
+  </div>
+</header>
+
+<!-- MAIN -->
+<div class="container">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <!-- Nav -->
+    <div class="sidebar-card">
+      <h3>Kapitelnavigation</h3>
+      <div id="chapterNav"></div>
+    </div>
+
+    <!-- Stats -->
+    <div class="sidebar-card">
+      <h3>Statistiken</h3>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-num" id="statDone">0</div>
+          <div class="stat-label">Aufgaben erledigt</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num" id="statTotal">0</div>
+          <div class="stat-label">Aufgaben gesamt</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num" id="statDays">—</div>
+          <div class="stat-label">Tage bis Abgabe</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">4k</div>
+          <div class="stat-label">Wörter Ziel</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="sidebar-card">
+      <h3>Zeitplan</h3>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div>
+          <div class="timeline-date">bis 31.05.2026</div>
+          <div class="timeline-desc">Feinkonzept & Gliederung finalisieren</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div>
+          <div class="timeline-date">bis 30.06.2026</div>
+          <div class="timeline-desc">Theorieteil & Literaturrecherche</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div>
+          <div class="timeline-date">bis 15.07.2026</div>
+          <div class="timeline-desc">Ist-BMC & Technologietrends</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div>
+          <div class="timeline-date">bis 25.07.2026</div>
+          <div class="timeline-desc">Soll-Modell & Diskussion</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot urgent"></div>
+        <div>
+          <div class="timeline-date">bis 02.08.2026</div>
+          <div class="timeline-desc">Überarbeitung & Abgabe</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Storage -->
+    <div class="sidebar-card">
+      <h3>Datenspeicherung</h3>
+      <div class="storage-status local" id="storageStatusBadge">
+        <div class="dot-indicator"></div>
+        <span id="storageStatusText">Nur lokal (Browser)</span>
+      </div>
+      <div style="font-size:12px;color:var(--ink-light);line-height:1.5;">
+        Klicke auf <strong>Sync-Einstellungen</strong> um JSONBin.io zu verbinden und den Fortschritt geräteübergreifend zu speichern.
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- CONTENT -->
+  <main class="main-content" id="mainContent">
+
+    <!-- INTRO -->
+    <div style="background:var(--white);border-radius:16px;padding:28px 32px;border:1px solid var(--border);box-shadow:var(--shadow);">
+      <div style="display:flex;align-items:flex-start;gap:20px;">
+        <div style="flex:1;">
+          <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:10px;">Forschungsfrage</div>
+          <p style="font-family:'Playfair Display',serif;font-size:16px;font-style:italic;line-height:1.6;color:var(--ink);">„Wie muss Zalando sein Geschäftsmodell durch digitale Transformation anpassen, um den sich wandelnden Bedürfnissen und veränderten Erwartungen seiner Zielgruppen im dynamischen Fashion-E-Commerce gerecht zu werden?"</p>
+        </div>
+        <div style="background:var(--teal-light);border-radius:12px;padding:16px 20px;text-align:center;flex-shrink:0;">
+          <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--teal);letter-spacing:1px;">UMFANG</div>
+          <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--teal-dark);">~15</div>
+          <div style="font-size:11px;color:var(--teal-dark);">Seiten / 4.000 Wörter</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASES -->
+    <div>
+      <div class="section-header">
+        <div class="section-title-block">
+          <h2 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;">Arbeitsphasen</h2>
+        </div>
+      </div>
+      <div class="phases-grid">
+        <div class="phase-card">
+          <div class="phase-num">PHASE 01</div>
+          <div class="phase-title">Orientierung & Feinkonzept</div>
+          <div class="phase-date">bis 31.05.2026</div>
+        </div>
+        <div class="phase-card">
+          <div class="phase-num">PHASE 02</div>
+          <div class="phase-title">Literaturrecherche & Theorie</div>
+          <div class="phase-date">bis 30.06.2026</div>
+        </div>
+        <div class="phase-card">
+          <div class="phase-num">PHASE 03</div>
+          <div class="phase-title">Unternehmensanalyse & Praxis</div>
+          <div class="phase-date">bis 15.07.2026</div>
+        </div>
+        <div class="phase-card">
+          <div class="phase-num">PHASE 04</div>
+          <div class="phase-title">Konzeption & Diskussion</div>
+          <div class="phase-date">bis 25.07.2026</div>
+        </div>
+        <div class="phase-card" style="border-top-color:var(--warn);">
+          <div class="phase-num" style="color:var(--warn);">PHASE 05</div>
+          <div class="phase-title">Überarbeitung & Abgabe</div>
+          <div class="phase-date" style="color:var(--warn);font-weight:600;">02.08.2026</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHAPTERS rendered by JS -->
+    <div id="chaptersContainer"></div>
+
+    <!-- RULES -->
+    <div class="rules-card">
+      <h2>⚠ Verbindliche Quellenregeln</h2>
+      <div class="rules-grid">
+        <div class="rule-item">
+          <div class="rule-label">Quellenanzahl</div>
+          <div class="rule-text">Mindestens 2–3 Quellenangaben als Fußnoten pro Seite. Gleichmäßig verteilt, keine unbelegten Absätze.</div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-label">Kapitel 1 & 2</div>
+          <div class="rule-text">Ausschließlich wissenschaftliche Quellen — Fachbücher, Monografien, wissenschaftliche Journals (Long Range Planning, Journal of Business Models, MIS Quarterly).</div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-label">Ab Kapitel 3</div>
+          <div class="rule-text">Wissenschaftliche Quellen bleiben Pflicht. Ergänzend erlaubt: Geschäftsberichte, Statista, offizielle Websites, Bundesministerien.</div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-label">Technologische Trends</div>
+          <div class="rule-text">Genau 3–4 konkrete Trends mit direktem Bezug auf Zalandos Geschäftsmodell. Kein allgemeines Technologiebeschreibung ohne Unternehmensbezug.</div>
+        </div>
+        <div class="rule-item forbidden">
+          <div class="rule-label">✗ Verboten</div>
+          <div class="rule-text">Wikipedia & Schwesterprojekte, Blogartikel ohne Autorenschaft, ChatGPT/Perplexity als Quelle. Unter keinen Umständen zu verwenden.</div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-label">Zitierweise</div>
+          <div class="rule-text">Fußnoten: „Vgl. Nachname, Vorname, Titel, Jahr, S. xy." Literaturverzeichnis trennt Monografien und Internetquellen.</div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- SYNC MODAL -->
+<div class="modal-overlay" id="syncModal">
+  <div class="modal">
+    <h2>☁ Cloud-Sync einrichten</h2>
+    <p>Verbinde deinen Fortschritt mit JSONBin.io, um ihn geräteübergreifend zu speichern. Der Fortschritt bleibt auch nach dem Löschen des Browser-Caches erhalten.</p>
+
+    <div class="info-box">
+      <strong>So funktioniert es:</strong><br>
+      1. Erstelle einen kostenlosen Account auf <a href="https://jsonbin.io" target="_blank">jsonbin.io</a><br>
+      2. Kopiere deinen <strong>API Key</strong> aus den Account-Einstellungen<br>
+      3. Klicke „Verbinden" — ein Bin wird automatisch erstellt
+    </div>
+
+    <label>JSONBin API Key</label>
+    <input type="text" id="apiKeyInput" placeholder="$2a$10$..." />
+
+    <label>Bin ID (optional — leer lassen für neue Erstellung)</label>
+    <input type="text" id="binIdInput" placeholder="Wird automatisch erstellt..." />
+
+    <div class="modal-actions">
+      <button class="btn-ghost" onclick="closeSyncModal()">Abbrechen</button>
+      <button class="btn btn-teal" onclick="saveSyncSettings()">Verbinden & Speichern</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <span class="toast-icon" id="toastIcon">✓</span>
+  <span id="toastMsg">Gespeichert</span>
+</div>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────────────────────
+const CHAPTERS = [
+  {
+    id: 'ch1',
+    num: '01',
+    title: 'Einleitung',
+    subtitle: 'Problemstellung & Zielsetzung — ca. 500–600 Wörter / 1,5–2 Seiten',
+    groups: [
+      {
+        label: '1.1 Problemstellung',
+        tasks: [
+          { id: 't1_1', text: 'Dynamik im Fashion-E-Commerce beschreiben (Marktvolatilität, neue Wettbewerber, Plattformlogiken)', tags: ['science'] },
+          { id: 't1_2', text: 'Veränderte Kundenerwartungen darstellen: Personalisierung, Nachhaltigkeit, Social Commerce, Omnichannel', tags: ['science'] },
+          { id: 't1_3', text: 'Position Zalandos als führende europäische Modeplattform einleiten', tags: ['internet', 'primary'] },
+          { id: 't1_4', text: 'Relevanz der digitalen Transformation für Geschäftsmodelle begründen', tags: ['science'] },
+        ]
+      },
+      {
+        label: '1.2 Untersuchungsobjekt & Zielsetzung',
+        tasks: [
+          { id: 't1_5', text: 'Zalando SE kurz charakterisieren (Plattform, Partnerprogramm, "Starting Point for Fashion")', tags: ['primary'] },
+          { id: 't1_6', text: 'Forschungsfrage klar formulieren und begründen', tags: [] },
+          { id: 't1_7', text: 'Zielsetzung der Arbeit ableiten: Ist-Analyse → Trends → Soll-Modell', tags: [] },
+          { id: 't1_8', text: 'Aufbau der Arbeit skizzieren (1–2 Sätze pro Kapitel)', tags: ['tip'] },
+        ]
+      },
+      {
+        label: 'Quellen & Formales',
+        tasks: [
+          { id: 't1_9', text: 'Min. 2–3 wissenschaftliche Quellen je Seite einplanen (Journals: Long Range Planning, MIS Quarterly)', tags: ['science'] },
+          { id: 't1_10', text: 'Zitierformat prüfen: Vgl. Nachname, Vorname, Titel, Jahr, S. xy', tags: ['tip'] },
+        ]
+      }
+    ]
+  },
+  {
+    id: 'ch2',
+    num: '02',
+    title: 'Theorie & Grundlagen',
+    subtitle: 'Business Model Canvas & Digitale Transformation — ca. 1.200–1.500 Wörter / 4–5 Seiten',
+    groups: [
+      {
+        label: '2.1 Business Model Canvas (BMC)',
+        tasks: [
+          { id: 't2_1', text: 'Definition Geschäftsmodell klären, Abgrenzung zu Strategie', tags: ['science'] },
+          { id: 't2_2', text: 'BMC nach Osterwalder & Pigneur: alle 9 Bausteine strukturiert erklären', tags: ['science'] },
+          { id: 't2_3', text: 'Stärken und Schwächen des BMC kritisch diskutieren', tags: ['science'] },
+          { id: 't2_4', text: 'Eignung des BMC für Zalando begründen (Plattformlogik, Mehrseitigkeit)', tags: ['science'] },
+        ]
+      },
+      {
+        label: '2.2 Digitale Transformation im Handel',
+        tasks: [
+          { id: 't2_5', text: 'Begriff "Digitale Transformation" vs. Digitalisierung abgrenzen', tags: ['science'] },
+          { id: 't2_6', text: 'Zentrale Treiber im Handel beschreiben: Plattformökonomie, KI, Social Commerce', tags: ['science'] },
+          { id: 't2_7', text: 'Besonderheiten Fashion-E-Commerce: Retourenquoten, Trendzyklen, Nachhaltigkeitsdruck', tags: ['science'] },
+          { id: 't2_8', text: 'Zielgruppenveränderungen theoretisch fundieren: Gen Z, veränderte Kaufverhalten', tags: ['science'] },
+        ]
+      },
+      {
+        label: '⚠ Pflichtquellen Kapitel 2',
+        tasks: [
+          { id: 't2_9', text: 'Osterwalder & Pigneur (2011): Business Model Generation — Pflichtliteratur lesen & exzerpieren', tags: ['science', 'deadline'] },
+          { id: 't2_10', text: 'Zott, Amit & Massa (2011): The Business Model — Long Range Planning zitieren', tags: ['science'] },
+          { id: 't2_11', text: 'Ergänzende Journals: Journal of Business Models, MIS Quarterly, Electronic Markets recherchieren', tags: ['science'] },
+          { id: 't2_12', text: 'Tewes, Niestroj & Tewes (2020): Geschäftsmodelle in die Zukunft denken (Pflichtliteratur)', tags: ['science', 'deadline'] },
+        ]
+      }
+    ]
+  },
+  {
+    id: 'ch3',
+    num: '03',
+    title: 'Unternehmensanalyse',
+    subtitle: 'Ist-Geschäftsmodell & Technologietrends — ca. 1.500–1.800 Wörter / 5–6 Seiten',
+    groups: [
+      {
+        label: '3.1 Ist-Geschäftsmodell Zalando (BMC)',
+        tasks: [
+          { id: 't3_1', text: 'Zalando Geschäftsberichte 2023–2025 herunterladen (investor.zalando.com)', tags: ['primary', 'deadline'] },
+          { id: 't3_2', text: 'BMC-Baustein: Kundensegmente — Endkunden, Markenpartner, stationäre Händler', tags: ['internet', 'primary'] },
+          { id: 't3_3', text: 'BMC-Baustein: Wertangebote — "Starting Point for Fashion", Auswahl, Lieferung, Nachhaltigkeit', tags: ['internet', 'primary'] },
+          { id: 't3_4', text: 'BMC-Baustein: Kanäle — App, Website, Connected Retail, Social Media', tags: ['internet', 'primary'] },
+          { id: 't3_5', text: 'BMC-Baustein: Kundenbeziehungen — Personalisierung, Zalando Plus, KI-Empfehlungen', tags: ['internet', 'primary'] },
+          { id: 't3_6', text: 'BMC-Baustein: Einnahmequellen — Produktverkauf, Kommissionsmodell, Logistikservices', tags: ['primary'] },
+          { id: 't3_7', text: 'BMC-Baustein: Schlüsselressourcen — IT-Plattform, KI, Logistiknetzwerk, Marke', tags: ['primary'] },
+          { id: 't3_8', text: 'BMC-Baustein: Schlüsselaktivitäten — Plattformbetrieb, Marketing, Tech-Entwicklung', tags: ['primary'] },
+          { id: 't3_9', text: 'BMC-Baustein: Schlüsselpartner — Marken, Logistik, Creator/Influencer', tags: ['primary'] },
+          { id: 't3_10', text: 'BMC-Baustein: Kostenstruktur — Fulfillment, Marketing, IT (aus GuV ableiten)', tags: ['primary'] },
+          { id: 't3_11', text: 'BMC-Canvas als Abbildung im Anhang erstellen', tags: ['tip'] },
+        ]
+      },
+      {
+        label: '3.2 Technologietrends & Zielgruppenveränderungen (genau 3–4 Trends!)',
+        tasks: [
+          { id: 't3_12', text: 'Trend 1: KI-gestützte Personalisierung & Agentic Commerce — Einfluss auf Wertangebote & Kundenbeziehungen', tags: ['science', 'internet'] },
+          { id: 't3_13', text: 'Trend 2: Social Commerce & Creator Economy — Neue Kanäle, veränderte Kaufentscheidungen', tags: ['science', 'internet'] },
+          { id: 't3_14', text: 'Trend 3: Predictive Analytics & datengetriebene Logistik — Kostenstruktur & Retourenreduktion', tags: ['science', 'internet'] },
+          { id: 't3_15', text: 'Trend 4: Nachhaltigkeitstechnologien & Kreislaufmodelle — Zielgruppe bewusster Konsumenten', tags: ['science', 'internet'] },
+          { id: 't3_16', text: 'Zielgruppenveränderungen je Trend anbinden: Mobile, Gen Z, Nachhaltigkeit, Community', tags: ['science'] },
+          { id: 't3_17', text: 'Jeden Trend mit wissenschaftlicher Quelle UND Zalando-Praxisbeleg belegen', tags: ['science', 'tip'] },
+        ]
+      }
+    ]
+  },
+  {
+    id: 'ch4',
+    num: '04',
+    title: 'Konzeption',
+    subtitle: 'Soll-Geschäftsmodell & Diskussion — ca. 1.200–1.500 Wörter / 4–5 Seiten',
+    groups: [
+      {
+        label: '4.1 Soll-Geschäftsmodell',
+        tasks: [
+          { id: 't4_1', text: 'Für jeden BMC-Baustein: Ist-Zustand benennen → Soll-Richtung begründen', tags: [] },
+          { id: 't4_2', text: 'Wertangebote: KI-gestützte Stilberatung, Nachhaltigkeitstransparenz, Social-Commerce-Erlebnis', tags: ['internet'] },
+          { id: 't4_3', text: 'Kundenbeziehungen: Von transaktionsorientiert zu relational (Communities, KI-Assistent)', tags: ['science'] },
+          { id: 't4_4', text: 'Kanäle: Multi-App-Strategie, Social Media Integration, Agentic Commerce', tags: ['internet'] },
+          { id: 't4_5', text: 'Einnahmequellen: Monetarisierung Marketing-Services, Creator-Kooperationen, Daten-Insights', tags: ['primary'] },
+          { id: 't4_6', text: 'Soll-BMC als Abbildung oder Gegenüberstellung (Ist vs. Soll) aufbereiten', tags: ['tip'] },
+          { id: 't4_7', text: 'Praxistransfer: Zalando-Initiativen als Belege nutzen (do.MORE, Creator Program, Zalando Plus)', tags: ['internet', 'primary'] },
+        ]
+      },
+      {
+        label: '4.2 Interpretation & Diskussion',
+        tasks: [
+          { id: 't4_8', text: 'Soll-Anpassungen in Theorie einordnen (BMC, Plattform-Literatur)', tags: ['science'] },
+          { id: 't4_9', text: 'Chancen diskutieren: Kundenbindung, Differenzierung, neue Einnahmen', tags: [] },
+          { id: 't4_10', text: 'Risiken benennen: Datenschutz, Investitionsbedarf, Akzeptanzprobleme', tags: [] },
+          { id: 't4_11', text: 'Machbarkeit mit Zalandos Strategie & Ressourcen abgleichen (Geschäftsbericht)', tags: ['primary'] },
+          { id: 't4_12', text: 'BMC kritisch reflektieren: statischer Charakter, begrenzte Wettbewerbsperspektive', tags: ['science'] },
+        ]
+      }
+    ]
+  },
+  {
+    id: 'ch5',
+    num: '05',
+    title: 'Schlussbetrachtung',
+    subtitle: 'Fazit & Ausblick — ca. 400–600 Wörter / 1–1,5 Seiten',
+    groups: [
+      {
+        label: '5.1 Fazit',
+        tasks: [
+          { id: 't5_1', text: 'Wichtigste Erkenntnisse zu Ist- und Soll-Geschäftsmodell zusammenfassen (keine Wiederholung)', tags: [] },
+          { id: 't5_2', text: 'Forschungsfrage in 1–2 prägnanten Absätzen beantworten', tags: [] },
+          { id: 't5_3', text: 'Praxisimplikationen für Zalando formulieren', tags: [] },
+        ]
+      },
+      {
+        label: '5.2 Ausblick',
+        tasks: [
+          { id: 't5_4', text: 'Limitationen der Arbeit benennen (Fokus Fallstudie, BMC-Grenzen, Datenbasis)', tags: [] },
+          { id: 't5_5', text: 'Weitere Forschungsansätze vorschlagen (Wettbewerbsvergleich, empirische Kundenstudie)', tags: [] },
+        ]
+      },
+      {
+        label: 'Formalia & Abgabe',
+        tasks: [
+          { id: 't5_6', text: 'Alle Verzeichnisse vollständig: Inhalt, Abbildung, Tabellen, Abkürzungen, Literatur', tags: ['deadline'] },
+          { id: 't5_7', text: 'Ehrenwörtliche Erklärung (neu seit 2024!) beifügen', tags: ['deadline'] },
+          { id: 't5_8', text: 'Präambel zur KI-Nutzung (wie in Beispielarbeit) verfassen falls KI genutzt wurde', tags: ['tip'] },
+          { id: 't5_9', text: 'Fußnotenformat einheitlich prüfen: Vgl. Nachname, Vorname, Titel, Jahr, S. xy', tags: ['tip'] },
+          { id: 't5_10', text: 'Endkorrektur: Rechtschreibung, Grammatik, Interpunktion', tags: ['deadline'] },
+          { id: 't5_11', text: 'Plagiatsprüfung durchführen', tags: ['deadline'] },
+          { id: 't5_12', text: '✅ Abgabe bis 02.08.2026 23:59:59 Uhr', tags: ['deadline'] },
+        ]
+      }
+    ]
+  }
+];
+
+// ── STATE ──────────────────────────────────────────────────────────────────────
+let state = { tasks: {}, apiKey: '', binId: '' };
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+function init() {
+  const raw = localStorage.getItem('zalando_roadmap');
+  if (raw) {
+    try { const parsed = JSON.parse(raw); state = { ...state, ...parsed }; } catch(e) {}
+  }
+  if (state.apiKey && state.binId) {
+    loadFromCloud();
+  } else {
+    render();
+  }
+  updateDays();
+}
+
+// ── RENDER ────────────────────────────────────────────────────────────────────
+function render() {
+  renderChapters();
+  renderNav();
+  updateGlobalProgress();
+}
+
+function renderChapters() {
+  const container = document.getElementById('chaptersContainer');
+  container.innerHTML = '';
+
+  CHAPTERS.forEach(ch => {
+    const card = document.createElement('div');
+    card.className = 'chapter-card';
+    card.id = ch.id;
+
+    const tasks = ch.groups.flatMap(g => g.tasks);
+    const done = tasks.filter(t => state.tasks[t.id]).length;
+    const total = tasks.length;
+    const pct = total ? Math.round(done/total*100) : 0;
+    const circumference = 2 * Math.PI * 18;
+    const dashOffset = circumference - (pct/100)*circumference;
+
+    card.innerHTML = `
+      <div class="chapter-card-header" onclick="toggleChapter('${ch.id}')">
+        <div class="chapter-icon">${ch.num}</div>
+        <div class="chapter-header-text">
+          <h3>${ch.title}</h3>
+          <div class="chapter-subtitle">${ch.subtitle}</div>
+        </div>
+        <div class="chapter-card-meta">
+          <div class="chapter-progress-ring">
+            <svg width="44" height="44" viewBox="0 0 44 44">
+              <circle class="ring-bg" cx="22" cy="22" r="18"/>
+              <circle class="ring-fill" cx="22" cy="22" r="18"
+                stroke-dasharray="${circumference}"
+                stroke-dashoffset="${dashOffset}"/>
+            </svg>
+            <div class="ring-text">${pct}%</div>
+          </div>
+        </div>
+        <span class="collapse-icon">▾</span>
+      </div>
+      <div class="chapter-card-body" style="max-height:2000px;">
+        ${ch.groups.map(g => `
+          <div class="task-group">
+            <div class="task-group-label">${g.label}</div>
+            ${g.tasks.map(t => renderTask(t)).join('')}
+          </div>
+        `).join('')}
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function renderTask(t) {
+  const done = !!state.tasks[t.id];
+  const tags = (t.tags || []).map(tag => {
+    const labels = { science:'🎓 Nur Wissenschaft', internet:'🌐 Internet ok', primary:'📄 Primärquelle', deadline:'⏰ Frist', tip:'💡 Tipp' };
+    return `<span class="task-tag tag-${tag}">${labels[tag]||tag}</span>`;
+  }).join('');
+  return `
+    <div class="task-item ${done?'done':''}" onclick="toggleTask('${t.id}')">
+      <div class="task-checkbox"><span class="checkmark">✓</span></div>
+      <div class="task-content">
+        <div class="task-text">${t.text}</div>
+        ${tags ? `<div class="task-meta">${tags}</div>` : ''}
+      </div>
+    </div>
+  `;
+}
+
+function renderNav() {
+  const nav = document.getElementById('chapterNav');
+  nav.innerHTML = CHAPTERS.map(ch => {
+    const tasks = ch.groups.flatMap(g => g.tasks);
+    const done = tasks.filter(t => state.tasks[t.id]).length;
+    const total = tasks.length;
+    return `
+      <div class="chapter-nav-item" onclick="scrollToChapter('${ch.id}')">
+        <div class="nav-num">${ch.num}</div>
+        <div class="nav-text">${ch.title}</div>
+        <div class="nav-progress">${done}/${total}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+function updateGlobalProgress() {
+  const all = CHAPTERS.flatMap(c => c.groups.flatMap(g => g.tasks));
+  const done = all.filter(t => state.tasks[t.id]).length;
+  const total = all.length;
+  const pct = total ? Math.round(done/total*100) : 0;
+
+  document.getElementById('globalBarFill').style.width = pct + '%';
+  document.getElementById('globalPct').textContent = pct + '%';
+  document.getElementById('statDone').textContent = done;
+  document.getElementById('statTotal').textContent = total;
+}
+
+function updateDays() {
+  const deadline = new Date('2026-08-02');
+  const today = new Date();
+  const diff = Math.ceil((deadline - today) / (1000*60*60*24));
+  document.getElementById('statDays').textContent = diff > 0 ? diff : '0';
+}
+
+// ── INTERACTIONS ──────────────────────────────────────────────────────────────
+function toggleTask(id) {
+  state.tasks[id] = !state.tasks[id];
+  saveState();
+  render();
+  if (state.tasks[id]) showToast('Aufgabe erledigt ✓', 'success');
+}
+
+function toggleChapter(id) {
+  const card = document.getElementById(id);
+  card.classList.toggle('collapsed');
+}
+
+function scrollToChapter(id) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function resetAll() {
+  if (!confirm('Wirklich alle Aufgaben zurücksetzen?')) return;
+  state.tasks = {};
+  saveState();
+  render();
+  showToast('Fortschritt zurückgesetzt', 'error');
+}
+
+// ── STORAGE ───────────────────────────────────────────────────────────────────
+function saveState() {
+  localStorage.setItem('zalando_roadmap', JSON.stringify(state));
+  if (state.apiKey && state.binId) {
+    saveToCloud();
+  }
+}
+
+async function saveToCloud() {
+  try {
+    await fetch(`https://api.jsonbin.io/v3/b/${state.binId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Master-Key': state.apiKey
+      },
+      body: JSON.stringify({ tasks: state.tasks })
+    });
+    updateStorageBadge(true);
+  } catch(e) {
+    console.warn('Cloud save failed:', e);
+  }
+}
+
+async function loadFromCloud() {
+  try {
+    const res = await fetch(`https://api.jsonbin.io/v3/b/${state.binId}/latest`, {
+      headers: { 'X-Master-Key': state.apiKey }
+    });
+    if (res.ok) {
+      const data = await res.json();
+      if (data.record && data.record.tasks) {
+        state.tasks = data.record.tasks;
+        localStorage.setItem('zalando_roadmap', JSON.stringify(state));
+        updateStorageBadge(true);
+      }
+    }
+  } catch(e) {
+    console.warn('Cloud load failed:', e);
+  }
+  render();
+}
+
+async function saveSyncSettings() {
+  const key = document.getElementById('apiKeyInput').value.trim();
+  const bin = document.getElementById('binIdInput').value.trim();
+
+  if (!key) { showToast('Bitte API Key eingeben', 'error'); return; }
+
+  state.apiKey = key;
+
+  if (bin) {
+    state.binId = bin;
+    localStorage.setItem('zalando_roadmap', JSON.stringify(state));
+    await loadFromCloud();
+    closeSyncModal();
+    showToast('Cloud-Sync verbunden ☁', 'success');
+  } else {
+    // Create new bin
+    try {
+      const res = await fetch('https://api.jsonbin.io/v3/b', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Master-Key': key,
+          'X-Bin-Name': 'zalando-seminar-roadmap'
+        },
+        body: JSON.stringify({ tasks: state.tasks })
+      });
+      if (res.ok) {
+        const data = await res.json();
+        state.binId = data.metadata.id;
+        localStorage.setItem('zalando_roadmap', JSON.stringify(state));
+        document.getElementById('binIdInput').value = state.binId;
+        updateStorageBadge(true);
+        closeSyncModal();
+        showToast('Neuer Bin erstellt & verbunden ☁', 'success');
+      } else {
+        showToast('Fehler: API Key prüfen', 'error');
+      }
+    } catch(e) {
+      showToast('Verbindungsfehler', 'error');
+    }
+  }
+}
+
+function updateStorageBadge(cloud) {
+  const badge = document.getElementById('storageStatusBadge');
+  const text = document.getElementById('storageStatusText');
+  if (cloud) {
+    badge.className = 'storage-status cloud';
+    text.textContent = 'Cloud-Sync aktiv (JSONBin)';
+  } else {
+    badge.className = 'storage-status local';
+    text.textContent = 'Nur lokal (Browser)';
+  }
+}
+
+// ── MODAL ─────────────────────────────────────────────────────────────────────
+function openSyncModal() {
+  document.getElementById('apiKeyInput').value = state.apiKey || '';
+  document.getElementById('binIdInput').value = state.binId || '';
+  document.getElementById('syncModal').classList.add('open');
+}
+
+function closeSyncModal() {
+  document.getElementById('syncModal').classList.remove('open');
+}
+
+document.getElementById('syncModal').addEventListener('click', function(e) {
+  if (e.target === this) closeSyncModal();
+});
+
+// ── TOAST ─────────────────────────────────────────────────────────────────────
+let toastTimer;
+function showToast(msg, type = 'success') {
+  const toast = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  document.getElementById('toastIcon').textContent = type === 'success' ? '✓' : '✕';
+  toast.className = `toast ${type} show`;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 2800);
+}
+
+// ── START ─────────────────────────────────────────────────────────────────────
+init();
+</script>
+</body>
+</html>
